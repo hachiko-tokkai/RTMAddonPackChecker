@@ -23,10 +23,16 @@ SHA-256が一致すれば、更新日時が異なっても既定では同一内�
 
 ## ビルド
 
-このワークスペースでは次を実行します。
+Java 8を使用して、リポジトリのルートで次を実行します。別途Gradleをインストールする必要はありません。
 
 ```powershell
-..\KaizPatchX-master\gradlew.bat -p . build
+.\gradlew.bat clean build
+```
+
+Linux・macOSでは次を実行します。
+
+```bash
+./gradlew clean build
 ```
 
 生成物は`build/libs/RTMAddonPackChecker-1.0.0.jar`です。

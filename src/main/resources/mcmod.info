@@ -1,0 +1,12 @@
+[
+  {
+    "modid": "rtmaddonpackchecker",
+    "name": "RTM Addon Pack Checker",
+    "description": "Rejects connections when RTM addon packs differ between server and client.",
+    "version": "1.0.0",
+    "mcversion": "1.7.10",
+    "authorList": ["tomos"],
+    "requiredMods": ["Forge", "RTM"],
+    "dependencies": ["RTM"]
+  }
+]

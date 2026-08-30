@@ -8,7 +8,7 @@ Minecraft Forge 1.7.10 / RealTrainMod向けの、サーバー・クライアン�
 
 - Minecraft 1.7.10
 - Minecraft Forge 10.13.4.1614
-- RealTrainMod + KaizPatchX 1.10.1
+- KaizPatchX 1.10.1
 
 KaizPatchX 1.10.1環境でサーバー・クライアント接続試験済みです。KaizPatchXのほかのバージョンおよび公式RTM環境は未検証です。
 

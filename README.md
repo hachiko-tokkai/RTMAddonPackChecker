@@ -2,6 +2,20 @@
 
 Minecraft Forge 1.7.10 / RealTrainMod向けの、サーバー・クライアント間の追加パック一致確認MODです。
 
+## テスト済み環境
+
+- Minecraft 1.7.10
+- Minecraft Forge 10.13.4.1614
+- RealTrainMod
+- KaizPatchX 1.10.1
+
+## 互換性
+
+KaizPatchX 1.10.1向けに設計していますが、実際のサーバー・クライアント接続試験は未実施です。
+KaizPatchXのほかのバージョン、および公式RTM環境は未検証です。
+
+本MODはKaizPatchX固有機能に依存していないため、ほかのRTM環境でも動作する可能性がありますが、互換性は保証していません。
+
 ## 判定方法
 
 `mods`以下を再帰検索し、`Model*.json`を含むZIP/JARをRTM追加パックとして扱います。ファイルごとに次を比較します。

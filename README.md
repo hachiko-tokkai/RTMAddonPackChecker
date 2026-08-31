@@ -52,3 +52,9 @@ Linux・macOSでは次を実行します。
 ## AI利用について
 
 本MODはOpenAI Codexを使用したAI支援のバイブコーディングで開発しました。設計、コード生成、修正および文書作成にAIを使用しています。ビルドと動作試験は実施済みです。
+
+## ライセンス
+
+本MODは[MIT License](LICENSE)で公開しています。
+
+Copyright (c) 2026 hachiko-tokkai

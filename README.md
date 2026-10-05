@@ -1,60 +1,100 @@
 # RTM Addon Pack Checker
 
-Minecraft Forge 1.7.10 / RealTrainMod向けの、サーバー・クライアント間の追加パック一致確認MODです。
+Minecraft Forge 1.7.10 / RTM向けの、サーバーとクライアントの追加パックが一致するか確認するMODです。
 
-「パック更新してくださいって何度も何度もずっと言ってるのになぜ更新ぜずにサーバー来るんですか？。更新してないあなた、運転会参加皆様に迷惑かけてますよ。サーバー回線爆破犯になるってずっと言ってたんじゃないですか。言うことを聞いてください。TPS落ちるの絶対あなたのせい。」というやり取りを防ぐMODです。
+[ダウンロード](https://github.com/hachiko-tokkai/RTMAddonPackChecker/releases/latest) · [不具合報告](https://github.com/hachiko-tokkai/RTMAddonPackChecker/issues)
 
-## 動作確認環境
+## 概要
 
-- Minecraft 1.7.10
-- Minecraft Forge 10.13.4.1614
-- KaizPatchX 1.10.1
+サーバー接続時にRTM追加パックを比較し、不一致があるクライアントの接続を拒否します。
+パックの更新漏れや、サーバーと異なるファイルの使用を接続時に確認できます。サーバーと全クライアントへの導入が必要です。
 
-KaizPatchX 1.10.1環境でサーバー・クライアント接続試験済みです。KaizPatchXのほかのバージョンおよび公式RTM環境は未検証です。
+## 対応環境
 
-本MODはKaizPatchX固有APIには依存していないため、ほかのRTM環境でも動作する可能性がありますが、互換性は保証していません。
+| 必要なもの | バージョン |
+|---|---|
+| Minecraft | 1.7.10 |
+| Minecraft Forge | 10.13.4.1614 |
+| 接続試験を実施したRTM環境 | KaizPatchX 1.10.1 |
 
-## 判定方法
+KaizPatchX 1.10.1環境でサーバー・クライアント接続試験済みです。
+KaizPatchX固有APIには依存していませんが、ほかのバージョンおよび公式RTM環境は未検証です。
 
-`mods`以下を再帰検索し、`Model*.json`を含むZIP/JARをRTM追加パックとして扱います。ファイルごとに次を比較します。
+## 注意事項
 
-- `mods`からの相対パス
-- ファイルサイズ
-- SHA-256
-- 最終更新日時（設定で有効化した場合のみ）
+- サーバーとクライアントで、追加パックの内容と`mods`からの相対パスを揃える必要があります。
+- パックを自動ダウンロード・更新する機能はありません。不一致が表示された場合は手動で更新してください。
+- 最終更新日時の比較は初期設定では無効です。コピーや展開で日時が変わるため、内容が同じでも拒否される場合があります。
 
-SHA-256が一致すれば、更新日時が異なっても既定では同一内容として扱います。更新日時はコピー・ダウンロード・展開で変化しやすいためです。
+## 導入方法
 
-## 導入
+1. サーバーとMinecraftを終了します。
+2. [リリースページ](https://github.com/hachiko-tokkai/RTMAddonPackChecker/releases/latest)から最新版のJARをダウンロードします。
+3. サーバーと全クライアントの`mods`フォルダーへ入れます。
+4. 追加パックをサーバーとクライアントで同じ相対パスに配置します。
+5. サーバーとMinecraftを起動します。
 
-1. `RTMAddonPackChecker-1.0.0.jar`をサーバーと全クライアントの`mods`へ入れます。
-2. サーバーとクライアントで同じ相対パスに追加パックを置きます。
-3. 接続時に不一致があれば、クライアントを切断して差分を表示します。全差分はサーバーログにも出力します。
+同じMODの古いJARがある場合は、取り除いてから新しいJARを入れてください。
 
-設定ファイルは`config/rtmaddonpackchecker.cfg`です。更新日時も完全一致させる場合だけ`compareLastModified=true`にします。
+## 主な機能
 
-## ビルド
+| 機能 | 内容 |
+|---|---|
+| パック検出 | `mods`以下を再帰検索し、`Model*.json`を含むZIP/JARを追加パックとして扱う |
+| 内容比較 | 相対パス・ファイルサイズ・SHA-256を比較 |
+| 日時比較 | 設定を有効にした場合のみ、最終更新日時も比較 |
+| 不一致通知 | 接続を拒否し、切断画面へ差分を表示 |
+| ログ出力 | 全差分をサーバーログへ出力 |
 
-Java 8を使用して、リポジトリのルートで次を実行します。別途Gradleをインストールする必要はありません。
+SHA-256が一致すれば、初期設定では更新日時が違っても同一内容として扱います。
+
+## 設定
+
+設定ファイルは`config/rtmaddonpackchecker.cfg`です。サーバーまたはMinecraftを終了してから編集してください。
+
+| 項目 | 内容 | 初期値 |
+|---|---|---|
+| `compareLastModified` | 最終更新日時も比較する | OFF |
+| `maximumPacks` | 検出する追加パック数の上限 | 2048 |
+| `maximumDifferencesInKickMessage` | 切断画面に表示する差分の最大数 | 8 |
+
+更新日時まで完全一致させる場合にのみ`compareLastModified=true`にしてください。
+切断画面の表示数を超えた差分も、サーバーログには出力されます。
+
+## 無効化・削除
+
+サーバーとMinecraftを終了し、サーバーと全クライアントの`mods`から本MODのJARを取り除いてください。
+
+## 不具合報告
+
+[Issues](https://github.com/hachiko-tokkai/RTMAddonPackChecker/issues)に、Minecraft・Forge・RTM環境のバージョン、再現手順、切断画面の表示、サーバーログを記載してください。
+
+## 開発
+
+Java 8を使用し、リポジトリのルートで実行します。別途Gradleをインストールする必要はありません。
+
+Windows：
 
 ```powershell
 .\gradlew.bat clean build
 ```
 
-Linux・macOSでは次を実行します。
+Linux・macOS：
 
 ```bash
 ./gradlew clean build
 ```
 
-生成物は`build/libs/RTMAddonPackChecker-1.0.0.jar`です。
+生成先は`build/libs/RTMAddonPackChecker-1.0.0.jar`です。
 
-## AI利用について
+## 生成AIの利用
 
-本MODはOpenAI Codexを使用したAI支援のバイブコーディングで開発しました。設計、コード生成、修正および文書作成にAIを使用しています。ビルドと動作試験は実施済みです。
+設計、コード生成・修正、文書作成にOpenAI Codexを使用しています。
 
-## ライセンス
+## ライセンス・免責事項
 
-本MODは[MIT License](LICENSE)で公開しています。
+本プロジェクトのソースコードとドキュメントには[MIT License](LICENSE)を適用しています。
 
 Copyright (c) 2026 hachiko-tokkai
+
+本MODは現状のまま提供します。動作・互換性・安全性を保証せず、使用に伴う不具合や損害について、作者は適用法令で認められる範囲において責任を負いません。詳細はLICENSEを確認してください。

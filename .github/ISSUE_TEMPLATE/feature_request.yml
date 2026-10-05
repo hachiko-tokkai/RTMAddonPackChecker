@@ -1,0 +1,69 @@
+name: "機能要望"
+description: "新しい機能や使い勝手の改善を提案します。"
+title: "[機能要望] "
+body:
+  -
+    type: "markdown"
+    attributes:
+      value: "何を追加するかだけでなく、解決したい問題と具体的な利用場面を記載してください。動作不良やクラッシュは「不具合報告」から報告してください。"
+  -
+    type: "checkboxes"
+    id: "checks"
+    attributes:
+      label: "提案前の確認"
+      options:
+        -
+          label: "既存のIssue（終了済みを含む）を検索し、同じ要望がないことを確認しました。"
+          required: true
+        -
+          label: "READMEと設定項目を確認し、既存機能で実現できるかを確認しました。"
+          required: true
+  -
+    type: "input"
+    id: "mod_version"
+    attributes:
+      label: "使用中のMODのバージョン"
+      description: "具体的な番号またはJARのファイル名を記載してください。未導入なら「未導入」と記載してください。"
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "problem"
+    attributes:
+      label: "解決したい問題・利用場面"
+      description: "今何に困っているか、誰がどのような場面で使うかを記載してください。"
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "proposal"
+    attributes:
+      label: "希望する機能と動作"
+      description: "操作方法、入力、結果など、希望する動作を具体的に記載してください。"
+      placeholder: "追加したい機能：\n操作 / 設定：\n期待する結果："
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "alternatives"
+    attributes:
+      label: "既存機能・代替手段との違い"
+      description: "現在の設定や別の方法で対応できない理由を記載してください。代替手段を調べていない場合は、その旨を記載してください。"
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "scope"
+    attributes:
+      label: "対象環境・既存動作への影響"
+      description: "必要な環境や対象車両・パック、サーバー/クライアントのどちらに必要か、既存の動作を変えるかなどを記載してください。不明な点は不明と記載できます。"
+    validations:
+      required: false
+  -
+    type: "textarea"
+    id: "examples"
+    attributes:
+      label: "参考資料・具体例"
+      description: "画像、動画、関連Issueや資料があれば添付・リンクしてください。参考資料のどの部分が関係するかも記載してください。"
+    validations:
+      required: false

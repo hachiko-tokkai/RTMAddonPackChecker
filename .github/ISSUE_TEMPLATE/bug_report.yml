@@ -1,0 +1,140 @@
+name: "不具合報告"
+description: "動作不良・クラッシュなどの問題を報告します。"
+title: "[不具合] "
+body:
+  -
+    type: "markdown"
+    attributes:
+      value: "再現に必要な情報を記載してください。調査結果が不明な場合は、不明・未確認であることと理由を記載できます。ログを添付する際は、IPアドレス、トークンなどの公開したくない情報を削除してください。"
+  -
+    type: "checkboxes"
+    id: "checks"
+    attributes:
+      label: "報告前の確認"
+      options:
+        -
+          label: "既存のIssue（終了済みを含む）を検索し、同じ内容の報告がないことを確認しました。"
+          required: true
+        -
+          label: "READMEの対応環境・導入方法・注意事項と、最新版のリリース説明を確認しました。"
+          required: true
+        -
+          label: "使用したバージョンと再現状況を、推測と区別して記載します。"
+          required: true
+  -
+    type: "input"
+    id: "mod_version"
+    attributes:
+      label: "MODのバージョン"
+      description: "使用しているバージョンを記載してください。分からない場合はJARのファイル名を記載してください。「最新版」だけではなく具体的な番号を記載してください。"
+      placeholder: "例：1.0.0 / RTMAddonPackChecker-1.0.0.jar"
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "environment"
+    attributes:
+      label: "Minecraft・Forge・KaizPatchX / RTMのバージョン"
+      description: "実際に使用したバージョンと環境を記載してください。 KaizPatchX以外のRTM環境なら、その名称とバージョンを記載してください。"
+      placeholder: "Minecraft：\nForge：\nKaizPatchX / RTM：\nJava：\nOS：\nランチャー / サーバー実装："
+    validations:
+      required: true
+  -
+    type: "dropdown"
+    id: "side"
+    attributes:
+      label: "発生した環境"
+      description: "問題が発生した環境を選択してください。"
+      options:
+        - "専用サーバー"
+        - "シングルプレイ"
+        - "マルチプレイのクライアント"
+        - "サーバー・クライアント両方"
+        - "その他 / 不明"
+    validations:
+      required: true
+  -
+    type: "dropdown"
+    id: "latest_test"
+    attributes:
+      label: "最新版での確認"
+      description: "最新リリースで同じ問題が起きるかを選択してください。未確認の場合も報告できます。"
+      options:
+        - "最新版でも発生する"
+        - "最新版では発生しない"
+        - "未確認（下の欄に理由を記載）"
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "summary"
+    attributes:
+      label: "不具合の内容"
+      description: "何をしたとき、どこで、どのような問題が起きたかを記載してください。発生頻度も記載してください。"
+      placeholder: "症状：\n発生タイミング：\n発生頻度："
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "steps"
+    attributes:
+      label: "再現手順"
+      description: "初期状態から問題が起きるまでを番号付きで記載してください。再現できない場合は直前の操作と、その旨を記載してください。"
+      placeholder: "1. \n2. \n3. "
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "expected"
+    attributes:
+      label: "期待する動作"
+      description: "本来どのように動作してほしいかを記載してください。"
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "actual"
+    attributes:
+      label: "実際の動作"
+      description: "実際に起きた動作やエラーメッセージを記載してください。可能なら画像・動画も添付してください。"
+    validations:
+      required: true
+  -
+    type: "dropdown"
+    id: "minimal"
+    attributes:
+      label: "最小構成での再現"
+      description: "対象MODと必須の前提MODだけで確認した結果を選択してください。 RTMの場合は再現に必要な追加パックだけを残してください。 ワールドや設定はバックアップ・複製してから確認してください。"
+      options:
+        - "最小構成でも発生する"
+        - "最小構成では発生しない"
+        - "未確認"
+        - "事情により確認できない"
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "isolation"
+    attributes:
+      label: "構成と切り分け結果"
+      description: "導入MOD、使用パック、関連設定、切り分けで試したことと結果を記載してください。最小構成や最新版で未確認の場合は、その理由も記載してください。"
+      placeholder: "導入MOD / 関連パック：\n関連する設定：\n試したことと結果：\n未確認の理由（該当する場合）："
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "logs"
+    attributes:
+      label: "ログ・クラッシュレポート"
+      description: "発生時のlogs/latest.logと、クラッシュした場合はcrash-reports内の該当ファイルを添付してください。サーバーで起きた場合はサーバーログも必要です。ファイルを欄へドラッグ＆ドロップできます。取得できない場合は、その理由を記載してください。"
+      placeholder: "ログ・クラッシュレポートを添付、または取得できない理由を記載してください。"
+    validations:
+      required: true
+  -
+    type: "textarea"
+    id: "additional"
+    attributes:
+      label: "補足"
+      description: "関連Issue、画像・動画、問題が発生しなかったバージョンなどがあれば記載してください。"
+    validations:
+      required: false
